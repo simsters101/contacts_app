@@ -1,0 +1,8 @@
+<p>Edit this contact</p>
+<form action="/contacts/<%=@contact.id%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <p>first_name:<input type="text" name="first_name" value="<%=@contact.first_name%>"></p>
+  <p>last_name: <input type="text" name="last_name" value="<%=@contact.last_name%>"></p>
+  <p>email: <input type="text" name="email" value="<%=@contact.email%>"></p>
+  <p><input type="submit" value="Submit"></p>
+</form>

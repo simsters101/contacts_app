@@ -1,11 +1,17 @@
 class Api::ContactsController < ApplicationController
   def index
     @contacts = Contact.all
-    render 'index.json.jb'
+    @contacts = @contacts.order(:id)
+    render 'index.json.jb' 
   end
 
   def show
     @contact = Contact.find_by(id: params[:id])
+    puts "*********************************"
+    puts "Current User:"
+    p current_user
+    puts "*********************************"
+
     render 'show.json.jb'
   end
 
@@ -17,8 +23,11 @@ class Api::ContactsController < ApplicationController
     @contact.email = params[:email]
     @contact.phone_number = params[:phone_number]
     @contact.bio = params[:bio]
-    @contact.save
-    render 'show.json.jb'
+    if @contact.save
+      render 'show.json.jb'
+    else
+      render 'errors.json.jb', status: :unprocessible_entity
+    end
   end
 
   def update
@@ -29,8 +38,11 @@ class Api::ContactsController < ApplicationController
     @contact.email = params[:email] || @contact.email
     @contact.phone_number = params[:phone_number] || @contact.phone_number
     @contact.bio = params[:bio] || @contact.bio
-    @contact.save
-    render 'show.json.jb'
+    if @contact.save
+      render 'show.json.jb'
+    else
+      render 'errors.json.jb', status: :unprocessible_entity
+    end
   end
 
   def destroy

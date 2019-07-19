@@ -1,0 +1,12 @@
+<a href="/contacts">To see all contacts click here</a><br>
+<a href="/contacts/<%=@contact.id%>/edit">To edit this contact click here</a><br>
+<p><a href="/contacts/<%=@contact.id%>" data-method="delete" rel="nofollow">To delete this contact click here</a></p><br>
+
+Id: <%= @contact.id  %> <br>
+First Name: <%= @contact.first_name %> <br>
+Last Name: <%= @contact.last_name %> <br>
+Email: <%= @contact.email  %><br>
+Created at: <%= @contact.created_at  %><br>
+Updated at: <%= @contact.updated_at  %>
+
+
